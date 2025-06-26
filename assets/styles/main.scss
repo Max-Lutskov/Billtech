@@ -1,0 +1,19 @@
+@use 'reset.scss';
+@font-face {
+  font-family: 'OpenSans';
+  src: url('public/fonts/OpenSans.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html {
+    font-family: 'OpenSans', sans-serif;
+    color: $default_text;
+    background: $background;
+}
+
+.container {
+  max-width: 774px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
