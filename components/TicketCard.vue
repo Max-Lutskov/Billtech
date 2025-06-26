@@ -68,7 +68,7 @@ const formattedPrice = computed(() =>
 
   &__segments {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, calc((100% - -20px) / 3));
     &:not(:last-child) {
       margin-bottom: 10px;
     }

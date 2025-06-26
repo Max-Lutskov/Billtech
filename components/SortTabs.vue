@@ -48,7 +48,7 @@ function setActive(tab: TabOption) {
   font-size: 12px;
   line-height: 1.5;
   vertical-align: middle;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   background: $white;
   border: none;
   cursor: pointer;

@@ -28,7 +28,7 @@ const { stops, onCheckChange } = useStopsFilter()
     font-size: 12px;
     font-weight: 600;
     line-height: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     padding: 0 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
