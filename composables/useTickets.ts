@@ -1,5 +1,5 @@
-import {useTicketsStore} from "~/store/tickets";
-import type {Ticket} from "~/store/tickets";
+import {useTicketsStore} from "@/store/tickets";
+import type {Ticket} from "@/store/tickets";
 
 export async function useTicketsLoader() {
     const store = useTicketsStore();

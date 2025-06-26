@@ -1,24 +1,19 @@
 <script setup lang="ts">
-import {useTicketsStore} from '@/store/tickets'
-import {useTicketsLoader} from '@/composables/useTickets'
-import type {Ticket} from '~/store/tickets'
-import type { SortOption } from '~/store/tickets'
+  import {useTicketsStore} from '@/store/tickets'
+  import {useTicketsLoader} from '@/composables/useTickets'
+  import type { SortOption } from '@/store/tickets'
 
-const store = useTicketsStore()
-const makeTicketKey = (ticket: Ticket) =>
-    `${ticket.carrier}-${ticket.price}-${ticket.segments[0].origin}-${ticket.segments[0].destination}-${ticket.segments[1].origin}-${ticket.segments[1].destination}`
+  const store = useTicketsStore()
+  const loadMore = () => store.loadMoreTickets(5)
+  const isInitialized = ref(false);
 
-const loadMore = () => store.loadMoreTickets(5)
-const isInitialized = ref(false);
-
-function onSortChange(option: SortOption) {
-  console.log('Selected sort option:', option)
-  store.setSortOption(option)
-}
-onMounted(() => {
-  useTicketsLoader()
-  isInitialized.value = true;
-})
+  function onSortChange(option: SortOption) {
+    store.setSortOption(option)
+  }
+  onMounted(() => {
+    useTicketsLoader()
+    isInitialized.value = true;
+  })
 </script>
 
 <template>
@@ -36,11 +31,10 @@ onMounted(() => {
           <TransitionGroup name="ticket-fade" tag="div">
             <TicketCard
                 class="main__tickets_card"
-                v-for="(ticket, index) in store.visibleTickets"
-                :key="index"
+                v-for="ticket in store.visibleTickets"
+                :key="ticket.uuid"
                 :ticket="ticket"
             />
-
 
             <div v-if="store.loading && !store.visibleTickets.length">
               <p>Завантаження...</p>

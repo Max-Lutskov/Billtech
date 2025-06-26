@@ -1,4 +1,3 @@
-<!-- components/BaseCheckbox.vue -->
 <script setup lang="ts">
 interface Props {
   modelValue: boolean

@@ -1,7 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
 export interface Ticket {
     price: number
+    uuid: string
     carrier: string
     segments: {
+        uuid: string
         origin: string
         destination: string
         date: string
@@ -76,9 +79,23 @@ export const useTicketsStore = defineStore('tickets', () => {
         loadMoreTickets(TICKETS_LOAD_COUNT)
     }
 
-    function addTickets(newTickets: Ticket[]) {
-        ticketBuffer.push(...newTickets)
+    function addTickets(newTickets: Omit<Ticket, 'uuid'>[]) {
+        const withUUIDSegments = newTickets.map(ticket => ({
+            ...ticket,
+            uuid: uuidv4(),
+            segments: ticket.segments.map(segment => ({
+                ...segment,
+                uuid: uuidv4()
+            }))
+        }))
+        ticketBuffer.push(...withUUIDSegments)
     }
+
+    watch(stop, (newVal) => {
+        if (newVal) {
+            resetVisibleTickets()
+        }
+    })
 
     return {
         visibleTickets,

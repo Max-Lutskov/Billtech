@@ -1,16 +1,3 @@
-<template>
-  <div class="tabs">
-    <button
-        v-for="tab in tabs"
-        :key="tab.value"
-        :class="['tab', { active: tab.value === activeTab }]"
-        @click="setActive(tab.value)"
-    >
-      {{ tab.label }}
-    </button>
-  </div>
-</template>
-
 <script setup lang="ts">
 type TabOption = 'cheapest' | 'fastest' | 'optimal'
 
@@ -31,6 +18,19 @@ function setActive(tab: TabOption) {
   emit('change', tab)
 }
 </script>
+
+<template>
+  <div class="tabs">
+    <button
+        v-for="tab in tabs"
+        :key="tab.value"
+        :class="['tab', { active: tab.value === activeTab }]"
+        @click="setActive(tab.value)"
+    >
+      {{ tab.label }}
+    </button>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .tabs {
@@ -65,7 +65,7 @@ function setActive(tab: TabOption) {
 
   &.active {
     background: $primary;
-    color: white;
+    color: $white;
   }
 }
 </style>

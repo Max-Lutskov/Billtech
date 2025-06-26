@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseCheckBox from '~/components/baseComponents/BaseCheckBox.vue'
-import BaseCard from '~/components/baseComponents/BaseCard.vue'
+import BaseCheckBox from '@/components/baseComponents/BaseCheckBox.vue'
+import BaseCard from '@/components/baseComponents/BaseCard.vue'
 import { useStopsFilter } from '@/composables/useStopsFilter'
 
 const { stops, onCheckChange } = useStopsFilter()

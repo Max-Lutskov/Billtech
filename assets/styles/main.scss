@@ -10,6 +10,7 @@ body, html {
     font-family: 'OpenSans', sans-serif;
     color: $default_text;
     background: $background;
+    scrollbar-gutter: stable;
 }
 
 .container {

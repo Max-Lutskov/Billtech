@@ -1,36 +1,3 @@
-<template>
-  <BaseCard class="ticket">
-      <div class="ticket__header">
-        <h2 class="ticket__price">
-          {{ formattedPrice }} ₴
-        </h2>
-        <div class="ticket__carrier">
-          <img
-              :src="`https://pics.avs.io/99/36/${ticket.carrier}.png`"
-              :alt="`${ticket.carrier} logo`"
-              width="70"
-              height="32"
-          />
-        </div>
-      </div>
-      <div class="ticket__body">
-        <div class="ticket__segments" v-for="(segment, index) in ticket.segments" :key="segment.origin + segment.destination + index">
-          <div class="ticket__segments_time">
-            <h3 class="ticket__segments_title">{{ segment.origin }} - {{ segment.destination }}</h3>
-            <h3 class="ticket__segments_value">{{ formatFlightTime(segment.date, segment.duration) }}</h3>
-          </div>
-          <div class="ticket__segments_duration">
-            <h3 class="ticket__segments_title">Тривалість</h3>
-            <h3 class="ticket__segments_value">{{ formatDuration(segment.duration) }}</h3>
-          </div>
-          <div class="ticket__segments_connection">
-            <h3 class="ticket__segments_title"> {{ getStopsText(segment.stops.length) }}</h3>
-            <h3 class="ticket__segments_value">{{ segment.stops.join(', ') }}</h3>
-          </div>
-        </div>
-      </div>
-  </BaseCard>
-</template>
 <script setup lang="ts">
 import BaseCard from "@/components/baseComponents/BaseCard.vue";
 import { formatFlightTime, formatDuration } from '@/composables/utils/flightTimeUtils'
@@ -47,6 +14,39 @@ const formattedPrice = computed(() =>
     new Intl.NumberFormat('uk-UA').format(props.ticket.price)
 )
 </script>
+<template>
+  <BaseCard class="ticket">
+      <div class="ticket__header">
+        <h2 class="ticket__price">
+          {{ formattedPrice }} ₴
+        </h2>
+        <div class="ticket__carrier">
+          <img
+              :src="`https://pics.avs.io/99/36/${ticket.carrier}.png`"
+              :alt="`${ticket.carrier} logo`"
+              width="70"
+              height="32"
+          />
+        </div>
+      </div>
+      <div class="ticket__body">
+        <div class="ticket__segments" v-for="segment in ticket.segments" :key="segment.uuid">
+          <div class="ticket__segments_time">
+            <h3 class="ticket__segments_title">{{ segment.origin }} - {{ segment.destination }}</h3>
+            <h3 class="ticket__segments_value">{{ formatFlightTime(segment.date, segment.duration) }}</h3>
+          </div>
+          <div class="ticket__segments_duration">
+            <h3 class="ticket__segments_title">Тривалість</h3>
+            <h3 class="ticket__segments_value">{{ formatDuration(segment.duration) }}</h3>
+          </div>
+          <div class="ticket__segments_connection">
+            <h3 class="ticket__segments_title"> {{ getStopsText(segment.stops.length) }}</h3>
+            <h3 class="ticket__segments_value">{{ segment.stops.join(', ') }}</h3>
+          </div>
+        </div>
+      </div>
+  </BaseCard>
+</template>
 
 <style lang="scss" scoped>
 .ticket {
