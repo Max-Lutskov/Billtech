@@ -12,6 +12,7 @@ const loadMore = () => store.loadMoreTickets(5)
 const isInitialized = ref(false);
 
 function onSortChange(option: SortOption) {
+  console.log('Selected sort option:', option)
   store.setSortOption(option)
 }
 onMounted(() => {
@@ -35,10 +36,11 @@ onMounted(() => {
           <TransitionGroup name="ticket-fade" tag="div">
             <TicketCard
                 class="main__tickets_card"
-                v-for="ticket in store.visibleTickets"
-                :key="makeTicketKey(ticket)"
+                v-for="(ticket, index) in store.visibleTickets"
+                :key="index"
                 :ticket="ticket"
             />
+
 
             <div v-if="store.loading && !store.visibleTickets.length">
               <p>Завантаження...</p>
