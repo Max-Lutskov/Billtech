@@ -43,6 +43,12 @@ export default defineNuxtConfig({
           property: 'og:type',
           content: 'website'
         }
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap'
+        }
       ]
     }
   }

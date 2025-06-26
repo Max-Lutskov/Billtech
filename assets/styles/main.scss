@@ -1,13 +1,7 @@
 @use 'reset.scss';
-@font-face {
-  font-family: 'OpenSans';
-  src: url('public/fonts/OpenSans.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body, html {
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: $default_text;
     background: $background;
     scrollbar-gutter: stable;
