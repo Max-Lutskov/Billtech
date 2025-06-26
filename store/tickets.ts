@@ -68,18 +68,22 @@ export const useTicketsStore = defineStore('tickets', () => {
         const all = getFilteredTickets()
         const start = visibleTickets.value.length
         const end = start + count
-        visibleTickets.value.push(...all.slice(start, end))
+        const toAdd = all.slice(start, end)
+        visibleTickets.value.push(...toAdd)
     }
 
     function resetVisibleTickets() {
-        visibleTickets.value = []
-        loadMoreTickets(TICKETS_LOAD_COUNT)
+        const all = getFilteredTickets()
+        visibleTickets.value = all.slice(0, TICKETS_LOAD_COUNT)
     }
 
     function addTickets(newTickets: Ticket[]) {
         ticketBuffer.push(...newTickets)
     }
 
+    watch([transferFilter, sortOption], () => {
+        resetVisibleTickets()
+    })
     return {
         visibleTickets,
         loading,
