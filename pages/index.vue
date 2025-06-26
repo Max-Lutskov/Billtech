@@ -19,7 +19,7 @@
 <template>
   <main class="main">
     <div class="main__logo">
-      <img src="/icons/Logo.svg" alt="Logo">
+      <img src="/icons/Logo.svg" alt="Logo" height="60" width="60" />
     </div>
     <div class="container">
       <div class="main__sidebar">

@@ -28,6 +28,8 @@ const checked = computed({
           src="/icons/check.svg"
           alt="checked"
           class="check-icon"
+          width="12"
+          height="8"
       />
     </span>
     <span class="base-checkbox__label">{{ label }}</span>
